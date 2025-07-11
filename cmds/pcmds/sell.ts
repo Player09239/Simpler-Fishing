@@ -38,6 +38,7 @@ export default async function sell(message: any): Promise<void> {
             for (const [name, qty] of Object.entries(counts)) {
                 total += calculateCost(name, qty);
             }
+            if (u.isPremium) total = total * 1.2
             const formattedTotal = await format(total);
             
             u.inventory = u.inventory.filter((item: string) => rodNames.includes(item))
@@ -51,6 +52,8 @@ export default async function sell(message: any): Promise<void> {
 
 You sold ${amount} item(s) for a total of **$${formattedTotal}**.
                 `)
+
+            if (u.isPremium) sell.setFooter({ text: 'Premium Bonus: 20%' })
             message.reply({ embeds: [sell] })
         }
     } catch (error) {

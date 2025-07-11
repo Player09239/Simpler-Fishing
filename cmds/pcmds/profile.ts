@@ -10,13 +10,17 @@ export default async function profile(message: any): Promise <void> {
             let u: any = await user.findOne({ userId: message.author.id })
             msgup()
             cmdup()
+
+            let premium;
+            if (u.premium) premium = '[Premium]'
+            else premium = ''
             
             const pf = new EmbedBuilder()
                 .setDescription(`
 ## PROFILE
 -# ${u.name}
 
-__**${u.name}**__
+__**${premium} ${u.name}**__
 **>** Equipped **${u.equipped}**
 **>** Cash **$${await format(u.cash)}**
 **>** Catched **${await format(u.catched)}** items
