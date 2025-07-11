@@ -1,6 +1,6 @@
 import { EmbedBuilder } from 'discord.js'
-import user from './../../../data/user'
-import bot from './../../../data/bot'
+import user from './../../../data/user.ts'
+import bot from './../../../data/bot.ts'
 
 export default async function dev_grant(message: any, client: any): Promise<void> {
     try {
@@ -9,14 +9,14 @@ export default async function dev_grant(message: any, client: any): Promise<void
             if (message.author.id !== '1235411394019725322') return message.reply('You are not authorized to use this command')
             
             const args = message.content.split(' ').filter(Boolean)
-            if (args.length !== 3) return message.channel.send(`Expected 3 arguments, got ${args.length}`)
+            if (args.length !== 4) return message.channel.send(`Expected 3 arguments, got ${args.length - 1}`)
 
-            const action = String(args[0])
-            const item = String(args[1])
-            const to = String(args[2])
+            const action = String(args[1])
+            const item = String(args[2])
+            const to = String(args[3])
 
-            if (!['add', 'take'].includes(args[0])) return message.reply('u stoopid')
-            if (!['premium'].includes(args[1])) return message.reply('u stoopid')
+            if (!['add', 'take'].includes(action)) return message.reply('u stoopid')
+            if (!['premium'].includes(item)) return message.reply('u stoopid')
 
             try {
                 const user: any = client.users.fetch(to)
