@@ -4,6 +4,8 @@ import { Client, Message, GatewayIntentBits } from 'discord.js';
 import mongoose from 'mongoose'
 import msg from './events/message.ts'
 
+import dev_grant from './cmds/pcmds/devpcmds/dev-grant.ts'
+
 import fish from './cmds/pcmds/fish.ts'
 import bag from './cmds/pcmds/bag.ts'
 import sell from './cmds/pcmds/sell.ts'
@@ -32,6 +34,8 @@ client.once('ready', (client) => {
 
 client.on('messageCreate', async (message) => {
     await msg(message)
+
+    await dev_grant(message, client)
 
     await fish(message)
     await bag(message)
