@@ -12,7 +12,7 @@ export default async function profile(message: any): Promise <void> {
             cmdup()
 
             let premium;
-            if (u.premium) premium = '[Premium]'
+            if (u.isPremium) premium = '[Premium]'
             else premium = ''
             
             const pf = new EmbedBuilder()
