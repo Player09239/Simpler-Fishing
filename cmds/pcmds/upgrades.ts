@@ -40,8 +40,8 @@ export async function upgrades(message: any): Promise<void> {
 ## UPGRADES
 -# ${u.name}
 
-Fishing I
-Cash I
+Fishing I - $300
+Cash I - $350
                         `)
     				message.reply({ embeds: [upgrades] })
 					break
