@@ -17,6 +17,7 @@ import help from './cmds/pcmds/help.ts'
 import leaderboard from './cmds/pcmds/leaderboard.ts'
 import about from './cmds/pcmds/about.ts'
 import profile from './cmds/pcmds/profile.ts'
+import upgrades from './cmds/pcmds/upgrades.ts'
 
 const client = new Client({
     intents: [
