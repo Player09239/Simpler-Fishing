@@ -23,7 +23,7 @@ export async function cmdup(int: number = 1): Promise<void> {
 
 export async function format(given: number, to: number = 2): Promise<any> {
     try {
-        if (given < 1e3) return given.toString()
+        if (given < 1e3) return given.toFixed(2)
         if (given >= 1e3 && given < 1e6) return (given / 1e3).toFixed(to) + 'k (thousands)'
         if (given >= 1e6 && given < 1e9) return (given / 1e6).toFixed(to) + 'm (millions)'
         if (given >= 1e9 && given < 1e12) return (given / 1e9).toFixed(to) + 'b (billions)'
