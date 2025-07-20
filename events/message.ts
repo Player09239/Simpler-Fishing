@@ -1,3 +1,4 @@
+import { GuildMemberFlagsBitField } from 'discord.js';
 import bot from './../data/bot.ts'
 import user from './../data/user.ts'
 
@@ -26,7 +27,18 @@ export default async function msg(message: any): Promise<void> {
             cash: '0',
             inventory: ["Starting Fishing Rod"],
             equipped: 'Starting Fishing Rod',
-            catched: 0
+            catched: 0,
+            isPremium: false,
+            upgrades: {
+                fishing: {
+                    cost: 300,
+                    lvl: 1
+                },
+                cash: {
+                    cost: 350,
+                    lvl: 1
+                }
+            }
         })
         await u.save();
     }
