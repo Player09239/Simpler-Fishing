@@ -30,6 +30,28 @@ const userSchema = new Schema({
     isPremium: {
         type: Boolean,
         default: false
+    },
+    upgrades: {
+        fishing: {
+            cost: {
+                type: Number,
+                default: 300
+            },
+            lvl: {
+                type: Number,
+                default: 1
+            }
+        },
+        cash: {
+            cost: {
+                type: Number,
+                default: 350
+            },
+            lvl: {
+                type: Number,
+                default: 1
+            }
+        }
     }
 })
 
