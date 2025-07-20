@@ -13,11 +13,14 @@ export default async function fish(message: any): Promise<void> {
             cmdup()
             
             let reward: string[] = []
-            for (let i = 0; i < 5; i++) {
+            let catching = 5 + (u.upgrades.fishing.lvl - 1)
+			let i = 0
+            while (i < catching) {
                 reward.push(getReward(u.equipped))
                 u.catched++
-                await u.save()
+				i++
             }
+            await u.save()
 
             u.inventory.push(...reward)
             await u.save()

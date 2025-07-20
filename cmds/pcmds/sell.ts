@@ -38,7 +38,11 @@ export default async function sell(message: any): Promise<void> {
             for (const [name, qty] of Object.entries(counts)) {
                 total += calculateCost(name, qty);
             }
-            if (u.isPremium) total = total * 1.2
+            let multi = (u.upgrades.cash.lvl * 0.05) - 0.05
+            if (u.isPremium) multi += 1.2
+            if (multi < 1) multi += 1
+            total = Number((total * multi).toFixed(2))
+            
             const formattedTotal = await format(total);
             
             u.inventory = u.inventory.filter((item: string) => rodNames.includes(item))

@@ -28,7 +28,8 @@ export default async function help(message: any): Promise<void> {
 **>** \`${b.prefix}leaderboard\` - View the leaderboard.
 **>** \`${b.prefix}shop\` - View the shop.
 **>** \`${b.prefix}about\` - About the bot.
-**>** \`${b.prefix}profile\` - View your/others profile.
+**>** \`${b.prefix}profile\` - View your profile.
+**>** \`${b.prefix}upgrades ?[<buy | view> <upgrade>]\` - Buy/View your upgrades
                 `)
             message.reply({ embeds: [help] })
         }

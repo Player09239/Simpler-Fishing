@@ -24,6 +24,10 @@ __**${premium} ${u.name}**__
 **>** Equipped **${u.equipped}**
 **>** Cash **$${await format(u.cash)}**
 **>** Catched **${await format(u.catched)}** items
+
+**Upgrades**
+**>** Fishing Tier ${u.upgrades.fishing.lvl} 
+**>** Cash Tier ${u.upgrades.cash.lvl}
                 `)
 
             message.reply({ embeds: [pf] })

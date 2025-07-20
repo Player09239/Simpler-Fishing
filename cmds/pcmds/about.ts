@@ -29,6 +29,9 @@ export default async function about(message: any, client: any): Promise<void> {
 ## ABOUT
 -# Simpler Fishing
 
+-# [**Github**](<https://github.com/Player09239/Simpler-Fishing>)
+-# [**Support Server**](<https://discord.gg/HdqT2kbmFC>)
+
 **>** __External Stats__
 > Founder **chaos_09239**
 > Ping **${color} ${client.ws.ping}ms**
