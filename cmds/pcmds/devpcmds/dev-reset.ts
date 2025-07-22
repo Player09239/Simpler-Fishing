@@ -9,7 +9,7 @@ export default async function dev_reset(message: any, client: any): Promise<void
             if (message.author.id !== '1235411394019725322') return message.reply('You are not authorized to use this command')
             
             const args = message.content.split(' ').filter(Boolean)
-            const target = String(args[0])
+            const target = String(args[1])
 
             try {
                 const user: any = await client.users.fetch(target)
