@@ -6,9 +6,9 @@ This is the 2nd bot from Simpler Productions! This bot might be better.. or wors
 ## About this bot..
 Made by Simpler Productions, targeted to make your life Simpler! Coded in TypeScript instead of JavaScript because why not. The point is just to fish and chill! This bot also comes with a **Global** leaderboard, so you and your friends can climb to the top!
 
-## Versions..
-### (Jul 19th 2025) Version 1.0.0
-This is the beta release of this bot!
+## Version..
+### (Jul 26th 2025) Version 1.1.0
+This update introduces XP, Levels, and Ranks!
 
 ## Links..
 Support Server: https://discord.gg/Q5ANs8K7Ge  
