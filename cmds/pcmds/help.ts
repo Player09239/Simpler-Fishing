@@ -36,6 +36,9 @@ export default async function help(message: any): Promise<void> {
 **>** \`${b.prefix}profile\` - View your profile.
 **>** \`${b.prefix}upgrades ?[<buy | view> <upgrade> ?<times>]\` - Buy/View your upgrades.
 **>** \`${b.prefix}level - View your level.
+**>** \`${b.prefix}rank\` - View your rank.
+**>** \`${b.prefix}rankup\` - Rank up.
+**>** \`${b.prefix}settings\` - View/Change your settings.
                 `)
             message.reply({ embeds: [help] })
             helpcd.add(message.author.id)
