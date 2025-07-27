@@ -2,12 +2,18 @@ import bot from './../../data/bot.ts'
 import { msgup, cmdup, format } from './../../util/func.ts'
 import user from './../../data/user.ts'
 import { EmbedBuilder } from 'discord.js'
+import fontConverter from './../../util/fontconverter.ts'
+
+const buycd = new Set();
 
 export default async function buy(message: any): Promise<void> { 
     try {
         let b: any = await bot.findOne({ botId: '1389387486035443714' })
         if (message.content.startsWith(`${b.prefix}buy`)) {
             let u: any = await user.findOne({ userId: message.author.id })
+            if (buycd.has(message.author.id)) {
+                return message.react('⏳')
+            }
             msgup()
             cmdup()
 
@@ -47,6 +53,34 @@ export default async function buy(message: any): Promise<void> {
                         return message.reply('You already have an Advanced Fishing Rod.');
                     }
                     break;
+                case 'gfrod':
+                    aitem = 'Grand Fishing Rod'
+                    cost = 30000
+                    if (u.inventory.includes('Grand Fishing Rod')) {
+                        return message.reply('You already have a Grand Fishing Rod.');
+                    }
+                    break;
+                case 'mfrod':
+                    aitem = 'Master Fishing Rod'
+                    cost = 50000
+                    if (u.inventory.includes('Master Fishing Rod')) {
+                        return message.reply('You already have a Master Fishing Rod.');
+                    }
+                    break;
+                case 'gmrod':
+                    aitem = 'Grandmaster\'s Fishing Rod'
+                    cost = 100000
+                    if (u.inventory.includes('Grandmaster\'s Fishing Rod')) {
+                        return message.reply('You already have a Grandmaster\'s Fishing Rod.');
+                    }
+                    break;
+                case 'ihrod':
+                    aitem = 'Inhumane Fishing Rod'
+                    cost = 275000
+                    if (u.inventory.includes('Inhumane Fishing Rod')) {
+                        return message.reply('You already have an Inhumane Fishing Rod.');
+                    }
+                    break;
                 default:
                     return message.reply('Invalid item specified.');
             }
@@ -59,7 +93,7 @@ export default async function buy(message: any): Promise<void> {
             u.inventory.push(aitem);
             await u.save();
 
-            const formattedCost = await format(cost);
+            const formattedCost = await fontConverter(await format(cost, 2, u.settings.numprefix))
             const buyEmbed = new EmbedBuilder()
                 .setDescription(`
 ## PURCHASED
@@ -69,8 +103,12 @@ You purchased a **${aitem}** for **$${formattedCost}**.
                 `);
 
             message.reply({ embeds: [buyEmbed] });
+            buycd.add(message.author.id);
+            setTimeout(() => {
+                buycd.delete(message.author.id);
+            }, 15000);
         }
     } catch (error) {
-        throw new Error(`buy.ts > Error: ${error}`)
+        throw new Error(`\u001b[36m[src/cmds/pcmds/buy.ts]\u001b[36m \u001b[31m[ERROR]\u001b[31m ${error}`)
     }
 }

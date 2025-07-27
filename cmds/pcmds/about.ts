@@ -3,6 +3,8 @@ import { EmbedBuilder } from 'discord.js'
 import { msgup, cmdup } from './../../util/func.ts'
 import user from './../../data/user.ts'
 
+const aboutcd = new Set()
+
 function formatUptime(ms: number): string {
     const s = Math.floor(ms / 1000) % 60;
     const m = Math.floor(ms / (1000 * 60)) % 60;
@@ -16,6 +18,9 @@ export default async function about(message: any, client: any): Promise<void> {
         let b: any = await bot.findOne({ botId: '1389387486035443714' })
         if (message.content === `${b.prefix}about`) {
             let u: any = await user.findOne({ userId: message.author.id })
+            if (aboutcd.has(message.author.id)) {
+                return message.react('⏳') 
+            }
             msgup()
             cmdup()
 
@@ -46,8 +51,13 @@ export default async function about(message: any, client: any): Promise<void> {
                 `)
                 .setFooter({ text: `Made by Simpler Productions` })
             message.reply({ embeds: [about] })
+
+            aboutcd.add(message.author.id)
+            setTimeout(() => {
+                aboutcd.delete(message.author.id)
+            }, 15000)
         }
     } catch (error) {
-        throw new Error(`about.ts > Error: ${error}`)
+        throw new Error(`\u001b[36m[src/cmds/pcmds/about.ts]\u001b[36m \u001b[31m[ERROR]\u001b[31m ${error}`)
     }
 }
