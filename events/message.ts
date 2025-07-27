@@ -1,6 +1,7 @@
 import { GuildMemberFlagsBitField } from 'discord.js';
 import bot from './../data/bot.ts'
 import user from './../data/user.ts'
+import checklvlup from './../util/checklvlup.ts'
 
 export default async function msg(message: any): Promise<void> {
     let b: any = await bot.findOne({ botId: '1389387486035443714' });
@@ -20,7 +21,7 @@ export default async function msg(message: any): Promise<void> {
     }
 
     if (!u) {
-        console.error('SYSTEM > User data not found in database.')
+        console.log(`\u001b[36m[src/events/message.ts]\u001b[36m \u001b[34m[ALERT]\u001b[34m ${message.author.id} is not found in the database, adding now..`)
         u = new user({
             userId: message.author.id,
             name: message.author.username,
@@ -37,9 +38,29 @@ export default async function msg(message: any): Promise<void> {
                 cash: {
                     cost: 350,
                     lvl: 1
+                },
+                storage: {
+                    cost: 425,
+                    lvl: 1,
+                    max: 175
+                },
+                xp: {
+                    cost: 290,
+                    lvl: 1
                 }
+            },
+            settings: {
+                numprefix: true
+            },
+            l: {
+                lv: 1,
+                xp: 0,
+                xpreq: 300
             }
         })
         await u.save();
+        console.log(`\u001b[36m[src/events/message.ts]\u001b[36m \u001b[34m[ALERT]\u001b[34m ${message.author.id} is added to the database.`)
     }
+
+    await checklvlup(message.author.id)
 }
