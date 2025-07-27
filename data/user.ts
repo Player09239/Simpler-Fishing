@@ -51,7 +51,56 @@ const userSchema = new Schema({
                 type: Number,
                 default: 1
             }
+        },
+        storage: {
+            cost: {
+                type: Number,
+                default: 425
+            },
+            lvl: {
+                type: Number,
+                default: 1
+            },
+            max: {
+                type: Number,
+                default: 175
+            }
+        },
+        xp: {
+            cost: {
+                type: Number,
+                default: 290
+            },
+            lvl: {
+                type: Number,
+                default: 1
+            }
         }
+    },
+    settings: {
+        numprefix: {
+            type: Boolean,
+            default: true
+        },
+    },
+    l: {
+        lv: {
+            type: Number,
+            default: 1
+        },
+        xp: {
+            type: Number,
+            default: 0
+        },
+        xpreq: {
+            type: Number,
+            default: 300
+        }
+    },
+    rank: {
+        type: String,
+        default: 'F-',
+        required: true
     }
 })
 
